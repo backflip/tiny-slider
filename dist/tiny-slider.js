@@ -1,102 +1,222 @@
-var tns = (function (){
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./webpack-entry.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/helpers/addCSSRule.js":
+/*!***********************************!*\
+  !*** ./src/helpers/addCSSRule.js ***!
+  \***********************************/
+/*! exports provided: addCSSRule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addCSSRule", function() { return addCSSRule; });
+/* harmony import */ var _raf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./raf.js */ "./src/helpers/raf.js");
+// cross browsers addRule method
+
+function addCSSRule(sheet, selector, rules, index) {
+  // return raf(function() {
+    'insertRule' in sheet ?
+      sheet.insertRule(selector + '{' + rules + '}', index) :
+      sheet.addRule(selector, rules, index);
+  // });
+}
+
+/***/ }),
+
+/***/ "./src/helpers/addClass.js":
+/*!*********************************!*\
+  !*** ./src/helpers/addClass.js ***!
+  \*********************************/
+/*! exports provided: addClass */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addClass", function() { return addClass; });
+/* harmony import */ var _hasClass_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hasClass.js */ "./src/helpers/hasClass.js");
+
+var addClass = _hasClass_js__WEBPACK_IMPORTED_MODULE_0__["classListSupport"] ?
+    function (el, str) {
+      if (!Object(_hasClass_js__WEBPACK_IMPORTED_MODULE_0__["hasClass"])(el,  str)) { el.classList.add(str); }
+    } :
+    function (el, str) {
+      if (!Object(_hasClass_js__WEBPACK_IMPORTED_MODULE_0__["hasClass"])(el,  str)) { el.className += ' ' + str; }
+    };
+
+
+
+/***/ }),
+
+/***/ "./src/helpers/addEvents.js":
+/*!**********************************!*\
+  !*** ./src/helpers/addEvents.js ***!
+  \**********************************/
+/*! exports provided: addEvents */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addEvents", function() { return addEvents; });
+// import { passiveOption } from './passiveOption.js';
+
+function addEvents(el, obj) {
+  for (var prop in obj) {
+    // var option = (prop === 'touchstart' || prop === 'touchmove') ? passiveOption : false;
+    el.addEventListener(prop, obj[prop], false);
+  }
+}
+
+/***/ }),
+
+/***/ "./src/helpers/arrayFromNodeList.js":
+/*!******************************************!*\
+  !*** ./src/helpers/arrayFromNodeList.js ***!
+  \******************************************/
+/*! exports provided: arrayFromNodeList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "arrayFromNodeList", function() { return arrayFromNodeList; });
+function arrayFromNodeList (nl) {
+  var arr = [];
+  for (var i = 0, l = nl.length; i < l; i++) {
+    arr.push(nl[i]);
+  }
+  return arr;
+}
+
+/***/ }),
+
+/***/ "./src/helpers/caf.js":
+/*!****************************!*\
+  !*** ./src/helpers/caf.js ***!
+  \****************************/
+/*! exports provided: caf */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "caf", function() { return caf; });
 var win = window;
 
-var raf = win.requestAnimationFrame
-  || win.webkitRequestAnimationFrame
-  || win.mozRequestAnimationFrame
-  || win.msRequestAnimationFrame
-  || function(cb) { return setTimeout(cb, 16); };
-
-var win$1 = window;
-
-var caf = win$1.cancelAnimationFrame
-  || win$1.mozCancelAnimationFrame
+var caf = win.cancelAnimationFrame
+  || win.mozCancelAnimationFrame
   || function(id){ clearTimeout(id); };
 
-function extend() {
-  var obj, name, copy,
-      target = arguments[0] || {},
-      i = 1,
-      length = arguments.length;
 
-  for (; i < length; i++) {
-    if ((obj = arguments[i]) !== null) {
-      for (name in obj) {
-        copy = obj[name];
+/***/ }),
 
-        if (target === copy) {
-          continue;
-        } else if (copy !== undefined) {
-          target[name] = copy;
-        }
-      }
-    }
-  }
-  return target;
-}
+/***/ "./src/helpers/calc.js":
+/*!*****************************!*\
+  !*** ./src/helpers/calc.js ***!
+  \*****************************/
+/*! exports provided: calc */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-function checkStorageValue (value) {
-  return ['true', 'false'].indexOf(value) >= 0 ? JSON.parse(value) : value;
-}
-
-function setLocalStorage(storage, key, value, access) {
-  if (access) {
-    try { storage.setItem(key, value); } catch (e) {}
-  }
-  return value;
-}
-
-function getSlideId() {
-  var id = window.tnsId;
-  window.tnsId = !id ? 1 : id + 1;
-  
-  return 'tns' + window.tnsId;
-}
-
-function getBody () {
-  var doc = document,
-      body = doc.body;
-
-  if (!body) {
-    body = doc.createElement('body');
-    body.fake = true;
-  }
-
-  return body;
-}
-
-var docElement = document.documentElement;
-
-function setFakeBody (body) {
-  var docOverflow = '';
-  if (body.fake) {
-    docOverflow = docElement.style.overflow;
-    //avoid crashing IE8, if background image is used
-    body.style.background = '';
-    //Safari 5.13/5.1.4 OSX stops loading if ::-webkit-scrollbar is used and scrollbars are visible
-    body.style.overflow = docElement.style.overflow = 'hidden';
-    docElement.appendChild(body);
-  }
-
-  return docOverflow;
-}
-
-function resetFakeBody (body, docOverflow) {
-  if (body.fake) {
-    body.remove();
-    docElement.style.overflow = docOverflow;
-    // Trigger layout so kinetic scrolling isn't disabled in iOS6+
-    // eslint-disable-next-line
-    docElement.offsetHeight;
-  }
-}
-
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calc", function() { return calc; });
+/* harmony import */ var _getBody_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getBody.js */ "./src/helpers/getBody.js");
+/* harmony import */ var _setFakeBody_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setFakeBody.js */ "./src/helpers/setFakeBody.js");
+/* harmony import */ var _resetFakeBody_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./resetFakeBody.js */ "./src/helpers/resetFakeBody.js");
 // get css-calc 
+// @return - false | calc | -webkit-calc | -moz-calc
+// @usage - var calc = getCalc(); 
+
+
+
 
 function calc() {
   var doc = document, 
-      body = getBody(),
-      docOverflow = setFakeBody(body),
+      body = Object(_getBody_js__WEBPACK_IMPORTED_MODULE_0__["getBody"])(),
+      docOverflow = Object(_setFakeBody_js__WEBPACK_IMPORTED_MODULE_1__["setFakeBody"])(body),
       div = doc.createElement('div'), 
       result = false;
 
@@ -115,71 +235,53 @@ function calc() {
     }
   } catch (e) {}
   
-  body.fake ? resetFakeBody(body, docOverflow) : div.remove();
+  body.fake ? Object(_resetFakeBody_js__WEBPACK_IMPORTED_MODULE_2__["resetFakeBody"])(body, docOverflow) : div.remove();
 
   return result;
 }
 
-// get subpixel support value
+/***/ }),
 
-function percentageLayout() {
-  // check subpixel layout supporting
-  var doc = document,
-      body = getBody(),
-      docOverflow = setFakeBody(body),
-      wrapper = doc.createElement('div'),
-      outer = doc.createElement('div'),
-      str = '',
-      count = 70,
-      perPage = 3,
-      supported = false;
+/***/ "./src/helpers/checkStorageValue.js":
+/*!******************************************!*\
+  !*** ./src/helpers/checkStorageValue.js ***!
+  \******************************************/
+/*! exports provided: checkStorageValue */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-  wrapper.className = "tns-t-subp2";
-  outer.className = "tns-t-ct";
-
-  for (var i = 0; i < count; i++) {
-    str += '<div></div>';
-  }
-
-  outer.innerHTML = str;
-  wrapper.appendChild(outer);
-  body.appendChild(wrapper);
-
-  supported = Math.abs(wrapper.getBoundingClientRect().left - outer.children[count - perPage].getBoundingClientRect().left) < 2;
-
-  body.fake ? resetFakeBody(body, docOverflow) : wrapper.remove();
-
-  return supported;
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkStorageValue", function() { return checkStorageValue; });
+function checkStorageValue (value) {
+  return ['true', 'false'].indexOf(value) >= 0 ? JSON.parse(value) : value;
 }
 
-function mediaquerySupport () {
-  var doc = document,
-      body = getBody(),
-      docOverflow = setFakeBody(body),
-      div = doc.createElement('div'),
-      style = doc.createElement('style'),
-      rule = '@media all and (min-width:1px){.tns-mq-test{position:absolute}}',
-      position;
+/***/ }),
 
-  style.type = 'text/css';
-  div.className = 'tns-mq-test';
+/***/ "./src/helpers/classListSupport.js":
+/*!*****************************************!*\
+  !*** ./src/helpers/classListSupport.js ***!
+  \*****************************************/
+/*! exports provided: classListSupport */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-  body.appendChild(style);
-  body.appendChild(div);
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "classListSupport", function() { return classListSupport; });
+var classListSupport = 'classList' in document.createElement('_');
 
-  if (style.styleSheet) {
-    style.styleSheet.cssText = rule;
-  } else {
-    style.appendChild(doc.createTextNode(rule));
-  }
+/***/ }),
 
-  position = window.getComputedStyle ? window.getComputedStyle(div).position : div.currentStyle['position'];
+/***/ "./src/helpers/createStyleSheet.js":
+/*!*****************************************!*\
+  !*** ./src/helpers/createStyleSheet.js ***!
+  \*****************************************/
+/*! exports provided: createStyleSheet */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-  body.fake ? resetFakeBody(body, docOverflow) : div.remove();
-
-  return position === "absolute";
-}
-
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createStyleSheet", function() { return createStyleSheet; });
 // create and append style sheet
 function createStyleSheet (media) {
   // Create the <style> tag
@@ -198,226 +300,34 @@ function createStyleSheet (media) {
   document.querySelector('head').appendChild(style);
 
   return style.sheet ? style.sheet : style.styleSheet;
-}
+};
 
-// cross browsers addRule method
-function addCSSRule(sheet, selector, rules, index) {
-  // return raf(function() {
-    'insertRule' in sheet ?
-      sheet.insertRule(selector + '{' + rules + '}', index) :
-      sheet.addRule(selector, rules, index);
-  // });
-}
+/***/ }),
 
-// cross browsers addRule method
-function removeCSSRule(sheet, index) {
-  // return raf(function() {
-    'deleteRule' in sheet ?
-      sheet.deleteRule(index) :
-      sheet.removeRule(index);
-  // });
-}
+/***/ "./src/helpers/docElement.js":
+/*!***********************************!*\
+  !*** ./src/helpers/docElement.js ***!
+  \***********************************/
+/*! exports provided: docElement */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-function getCssRulesLength(sheet) {
-  var rule = ('insertRule' in sheet) ? sheet.cssRules : sheet.rules;
-  return rule.length;
-}
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "docElement", function() { return docElement; });
+var docElement = document.documentElement;
 
-function toDegree (y, x) {
-  return Math.atan2(y, x) * (180 / Math.PI);
-}
+/***/ }),
 
-function getTouchDirection(angle, range) {
-  var direction = false,
-      gap = Math.abs(90 - Math.abs(angle));
-      
-  if (gap >= 90 - range) {
-    direction = 'horizontal';
-  } else if (gap <= range) {
-    direction = 'vertical';
-  }
+/***/ "./src/helpers/events.js":
+/*!*******************************!*\
+  !*** ./src/helpers/events.js ***!
+  \*******************************/
+/*! exports provided: Events */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-  return direction;
-}
-
-// https://toddmotto.com/ditch-the-array-foreach-call-nodelist-hack/
-function forEachNodeList (arr, callback, scope) {
-  for (var i = 0, l = arr.length; i < l; i++) {
-    callback.call(scope, arr[i], i);
-  }
-}
-
-var classListSupport = 'classList' in document.createElement('_');
-
-var hasClass = classListSupport ?
-    function (el, str) { return el.classList.contains(str); } :
-    function (el, str) { return el.className.indexOf(str) >= 0; };
-
-var addClass = classListSupport ?
-    function (el, str) {
-      if (!hasClass(el,  str)) { el.classList.add(str); }
-    } :
-    function (el, str) {
-      if (!hasClass(el,  str)) { el.className += ' ' + str; }
-    };
-
-var removeClass = classListSupport ?
-    function (el, str) {
-      if (hasClass(el,  str)) { el.classList.remove(str); }
-    } :
-    function (el, str) {
-      if (hasClass(el, str)) { el.className = el.className.replace(str, ''); }
-    };
-
-function hasAttr(el, attr) {
-  return el.hasAttribute(attr);
-}
-
-function getAttr(el, attr) {
-  return el.getAttribute(attr);
-}
-
-function isNodeList(el) {
-  // Only NodeList has the "item()" function
-  return typeof el.item !== "undefined"; 
-}
-
-function setAttrs(els, attrs) {
-  els = (isNodeList(els) || els instanceof Array) ? els : [els];
-  if (Object.prototype.toString.call(attrs) !== '[object Object]') { return; }
-
-  for (var i = els.length; i--;) {
-    for(var key in attrs) {
-      els[i].setAttribute(key, attrs[key]);
-    }
-  }
-}
-
-function removeAttrs(els, attrs) {
-  els = (isNodeList(els) || els instanceof Array) ? els : [els];
-  attrs = (attrs instanceof Array) ? attrs : [attrs];
-
-  var attrLength = attrs.length;
-  for (var i = els.length; i--;) {
-    for (var j = attrLength; j--;) {
-      els[i].removeAttribute(attrs[j]);
-    }
-  }
-}
-
-function arrayFromNodeList (nl) {
-  var arr = [];
-  for (var i = 0, l = nl.length; i < l; i++) {
-    arr.push(nl[i]);
-  }
-  return arr;
-}
-
-function hideElement(el, forceHide) {
-  if (el.style.display !== 'none') { el.style.display = 'none'; }
-}
-
-function showElement(el, forceHide) {
-  if (el.style.display === 'none') { el.style.display = ''; }
-}
-
-function isVisible(el) {
-  return window.getComputedStyle(el).display !== 'none';
-}
-
-function whichProperty(props){
-  if (typeof props === 'string') {
-    var arr = [props],
-        Props = props.charAt(0).toUpperCase() + props.substr(1),
-        prefixes = ['Webkit', 'Moz', 'ms', 'O'];
-        
-    prefixes.forEach(function(prefix) {
-      if (prefix !== 'ms' || props === 'transform') {
-        arr.push(prefix + Props);
-      }
-    });
-
-    props = arr;
-  }
-
-  var el = document.createElement('fakeelement'),
-      len = props.length;
-  for(var i = 0; i < props.length; i++){
-    var prop = props[i];
-    if( el.style[prop] !== undefined ){ return prop; }
-  }
-
-  return false; // explicit for ie9-
-}
-
-function has3DTransforms(tf){
-  if (!tf) { return false; }
-  if (!window.getComputedStyle) { return false; }
-  
-  var doc = document,
-      body = getBody(),
-      docOverflow = setFakeBody(body),
-      el = doc.createElement('p'),
-      has3d,
-      cssTF = tf.length > 9 ? '-' + tf.slice(0, -9).toLowerCase() + '-' : '';
-
-  cssTF += 'transform';
-
-  // Add it to the body to get the computed style
-  body.insertBefore(el, null);
-
-  el.style[tf] = 'translate3d(1px,1px,1px)';
-  has3d = window.getComputedStyle(el).getPropertyValue(cssTF);
-
-  body.fake ? resetFakeBody(body, docOverflow) : el.remove();
-
-  return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
-}
-
-// get transitionend, animationend based on transitionDuration
-// @propin: string
-// @propOut: string, first-letter uppercase
-// Usage: getEndProperty('WebkitTransitionDuration', 'Transition') => webkitTransitionEnd
-function getEndProperty(propIn, propOut) {
-  var endProp = false;
-  if (/^Webkit/.test(propIn)) {
-    endProp = 'webkit' + propOut + 'End';
-  } else if (/^O/.test(propIn)) {
-    endProp = 'o' + propOut + 'End';
-  } else if (propIn) {
-    endProp = propOut.toLowerCase() + 'end';
-  }
-  return endProp;
-}
-
-// import { passiveOption } from './passiveOption.js';
-
-function addEvents(el, obj) {
-  for (var prop in obj) {
-    // var option = (prop === 'touchstart' || prop === 'touchmove') ? passiveOption : false;
-    el.addEventListener(prop, obj[prop], false);
-  }
-}
-
-// Test via a getter in the options object to see if the passive property is accessed
-var supportsPassive = false;
-try {
-  var opts = Object.defineProperty({}, 'passive', {
-    get: function() {
-      supportsPassive = true;
-    }
-  });
-  window.addEventListener("test", null, opts);
-} catch (e) {}
-var passiveOption = supportsPassive ? { passive: true } : false;
-
-function removeEvents(el, obj) {
-  for (var prop in obj) {
-    var option = ['touchstart', 'touchmove'].indexOf(prop) >= 0 ? passiveOption : false;
-    el.removeEventListener(prop, obj[prop], option);
-  }
-}
-
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Events", function() { return Events; });
 function Events() {
   return {
     topics: {},
@@ -444,8 +354,334 @@ function Events() {
       }
     }
   };
+};
+
+/***/ }),
+
+/***/ "./src/helpers/extend.js":
+/*!*******************************!*\
+  !*** ./src/helpers/extend.js ***!
+  \*******************************/
+/*! exports provided: extend */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extend", function() { return extend; });
+function extend() {
+  var obj, name, copy,
+      target = arguments[0] || {},
+      i = 1,
+      length = arguments.length;
+
+  for (; i < length; i++) {
+    if ((obj = arguments[i]) !== null) {
+      for (name in obj) {
+        copy = obj[name];
+
+        if (target === copy) {
+          continue;
+        } else if (copy !== undefined) {
+          target[name] = copy;
+        }
+      }
+    }
+  }
+  return target;
 }
 
+/***/ }),
+
+/***/ "./src/helpers/forEachNodeList.js":
+/*!****************************************!*\
+  !*** ./src/helpers/forEachNodeList.js ***!
+  \****************************************/
+/*! exports provided: forEachNodeList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "forEachNodeList", function() { return forEachNodeList; });
+// https://toddmotto.com/ditch-the-array-foreach-call-nodelist-hack/
+function forEachNodeList (arr, callback, scope) {
+  for (var i = 0, l = arr.length; i < l; i++) {
+    callback.call(scope, arr[i], i);
+  }
+}
+
+/***/ }),
+
+/***/ "./src/helpers/getAttr.js":
+/*!********************************!*\
+  !*** ./src/helpers/getAttr.js ***!
+  \********************************/
+/*! exports provided: getAttr */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAttr", function() { return getAttr; });
+function getAttr(el, attr) {
+  return el.getAttribute(attr);
+}
+
+/***/ }),
+
+/***/ "./src/helpers/getBody.js":
+/*!********************************!*\
+  !*** ./src/helpers/getBody.js ***!
+  \********************************/
+/*! exports provided: getBody */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getBody", function() { return getBody; });
+function getBody () {
+  var doc = document,
+      body = doc.body;
+
+  if (!body) {
+    body = doc.createElement('body');
+    body.fake = true;
+  }
+
+  return body;
+}
+
+/***/ }),
+
+/***/ "./src/helpers/getCssRulesLength.js":
+/*!******************************************!*\
+  !*** ./src/helpers/getCssRulesLength.js ***!
+  \******************************************/
+/*! exports provided: getCssRulesLength */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCssRulesLength", function() { return getCssRulesLength; });
+function getCssRulesLength(sheet) {
+  var rule = ('insertRule' in sheet) ? sheet.cssRules : sheet.rules;
+  return rule.length;
+}
+
+/***/ }),
+
+/***/ "./src/helpers/getEndProperty.js":
+/*!***************************************!*\
+  !*** ./src/helpers/getEndProperty.js ***!
+  \***************************************/
+/*! exports provided: getEndProperty */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEndProperty", function() { return getEndProperty; });
+// get transitionend, animationend based on transitionDuration
+// @propin: string
+// @propOut: string, first-letter uppercase
+// Usage: getEndProperty('WebkitTransitionDuration', 'Transition') => webkitTransitionEnd
+function getEndProperty(propIn, propOut) {
+  var endProp = false;
+  if (/^Webkit/.test(propIn)) {
+    endProp = 'webkit' + propOut + 'End';
+  } else if (/^O/.test(propIn)) {
+    endProp = 'o' + propOut + 'End';
+  } else if (propIn) {
+    endProp = propOut.toLowerCase() + 'end';
+  }
+  return endProp;
+}
+
+/***/ }),
+
+/***/ "./src/helpers/getSlideId.js":
+/*!***********************************!*\
+  !*** ./src/helpers/getSlideId.js ***!
+  \***********************************/
+/*! exports provided: getSlideId */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSlideId", function() { return getSlideId; });
+function getSlideId() {
+  var id = window.tnsId;
+  window.tnsId = !id ? 1 : id + 1;
+  
+  return 'tns' + window.tnsId;
+}
+
+/***/ }),
+
+/***/ "./src/helpers/getTouchDirection.js":
+/*!******************************************!*\
+  !*** ./src/helpers/getTouchDirection.js ***!
+  \******************************************/
+/*! exports provided: getTouchDirection */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTouchDirection", function() { return getTouchDirection; });
+function getTouchDirection(angle, range) {
+  var direction = false,
+      gap = Math.abs(90 - Math.abs(angle));
+      
+  if (gap >= 90 - range) {
+    direction = 'horizontal';
+  } else if (gap <= range) {
+    direction = 'vertical';
+  }
+
+  return direction;
+}
+
+/***/ }),
+
+/***/ "./src/helpers/has3DTransforms.js":
+/*!****************************************!*\
+  !*** ./src/helpers/has3DTransforms.js ***!
+  \****************************************/
+/*! exports provided: has3DTransforms */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "has3DTransforms", function() { return has3DTransforms; });
+/* harmony import */ var _getBody_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getBody.js */ "./src/helpers/getBody.js");
+/* harmony import */ var _setFakeBody_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setFakeBody.js */ "./src/helpers/setFakeBody.js");
+/* harmony import */ var _resetFakeBody_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./resetFakeBody.js */ "./src/helpers/resetFakeBody.js");
+
+
+
+
+function has3DTransforms(tf){
+  if (!tf) { return false; }
+  if (!window.getComputedStyle) { return false; }
+  
+  var doc = document,
+      body = Object(_getBody_js__WEBPACK_IMPORTED_MODULE_0__["getBody"])(),
+      docOverflow = Object(_setFakeBody_js__WEBPACK_IMPORTED_MODULE_1__["setFakeBody"])(body),
+      el = doc.createElement('p'),
+      has3d,
+      cssTF = tf.length > 9 ? '-' + tf.slice(0, -9).toLowerCase() + '-' : '';
+
+  cssTF += 'transform';
+
+  // Add it to the body to get the computed style
+  body.insertBefore(el, null);
+
+  el.style[tf] = 'translate3d(1px,1px,1px)';
+  has3d = window.getComputedStyle(el).getPropertyValue(cssTF);
+
+  body.fake ? Object(_resetFakeBody_js__WEBPACK_IMPORTED_MODULE_2__["resetFakeBody"])(body, docOverflow) : el.remove();
+
+  return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
+}
+
+
+/***/ }),
+
+/***/ "./src/helpers/hasAttr.js":
+/*!********************************!*\
+  !*** ./src/helpers/hasAttr.js ***!
+  \********************************/
+/*! exports provided: hasAttr */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hasAttr", function() { return hasAttr; });
+function hasAttr(el, attr) {
+  return el.hasAttribute(attr);
+}
+
+/***/ }),
+
+/***/ "./src/helpers/hasClass.js":
+/*!*********************************!*\
+  !*** ./src/helpers/hasClass.js ***!
+  \*********************************/
+/*! exports provided: classListSupport, hasClass */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hasClass", function() { return hasClass; });
+/* harmony import */ var _classListSupport_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classListSupport.js */ "./src/helpers/classListSupport.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "classListSupport", function() { return _classListSupport_js__WEBPACK_IMPORTED_MODULE_0__["classListSupport"]; });
+
+
+
+var hasClass = _classListSupport_js__WEBPACK_IMPORTED_MODULE_0__["classListSupport"] ?
+    function (el, str) { return el.classList.contains(str); } :
+    function (el, str) { return el.className.indexOf(str) >= 0; };
+
+
+
+/***/ }),
+
+/***/ "./src/helpers/hideElement.js":
+/*!************************************!*\
+  !*** ./src/helpers/hideElement.js ***!
+  \************************************/
+/*! exports provided: hideElement */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hideElement", function() { return hideElement; });
+function hideElement(el, forceHide) {
+  if (el.style.display !== 'none') { el.style.display = 'none'; }
+}
+
+/***/ }),
+
+/***/ "./src/helpers/isNodeList.js":
+/*!***********************************!*\
+  !*** ./src/helpers/isNodeList.js ***!
+  \***********************************/
+/*! exports provided: isNodeList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isNodeList", function() { return isNodeList; });
+function isNodeList(el) {
+  // Only NodeList has the "item()" function
+  return typeof el.item !== "undefined"; 
+}
+
+/***/ }),
+
+/***/ "./src/helpers/isVisible.js":
+/*!**********************************!*\
+  !*** ./src/helpers/isVisible.js ***!
+  \**********************************/
+/*! exports provided: isVisible */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isVisible", function() { return isVisible; });
+function isVisible(el) {
+  return window.getComputedStyle(el).display !== 'none';
+}
+
+/***/ }),
+
+/***/ "./src/helpers/jsTransform.js":
+/*!************************************!*\
+  !*** ./src/helpers/jsTransform.js ***!
+  \************************************/
+/*! exports provided: jsTransform */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "jsTransform", function() { return jsTransform; });
 function jsTransform(element, attr, prefix, postfix, to, duration, callback) {
   var tick = Math.min(duration, 10),
       unit = (to.indexOf('%') >= 0) ? '%' : 'px',
@@ -467,6 +703,460 @@ function jsTransform(element, attr, prefix, postfix, to, duration, callback) {
   }
 }
 
+/***/ }),
+
+/***/ "./src/helpers/mediaquerySupport.js":
+/*!******************************************!*\
+  !*** ./src/helpers/mediaquerySupport.js ***!
+  \******************************************/
+/*! exports provided: mediaquerySupport */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mediaquerySupport", function() { return mediaquerySupport; });
+/* harmony import */ var _getBody_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getBody.js */ "./src/helpers/getBody.js");
+/* harmony import */ var _setFakeBody_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setFakeBody.js */ "./src/helpers/setFakeBody.js");
+/* harmony import */ var _resetFakeBody_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./resetFakeBody.js */ "./src/helpers/resetFakeBody.js");
+
+
+
+
+function mediaquerySupport () {
+  var doc = document,
+      body = Object(_getBody_js__WEBPACK_IMPORTED_MODULE_0__["getBody"])(),
+      docOverflow = Object(_setFakeBody_js__WEBPACK_IMPORTED_MODULE_1__["setFakeBody"])(body),
+      div = doc.createElement('div'),
+      style = doc.createElement('style'),
+      rule = '@media all and (min-width:1px){.tns-mq-test{position:absolute}}',
+      position;
+
+  style.type = 'text/css';
+  div.className = 'tns-mq-test';
+
+  body.appendChild(style);
+  body.appendChild(div);
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = rule;
+  } else {
+    style.appendChild(doc.createTextNode(rule));
+  }
+
+  position = window.getComputedStyle ? window.getComputedStyle(div).position : div.currentStyle['position'];
+
+  body.fake ? Object(_resetFakeBody_js__WEBPACK_IMPORTED_MODULE_2__["resetFakeBody"])(body, docOverflow) : div.remove();
+
+  return position === "absolute";
+}
+
+/***/ }),
+
+/***/ "./src/helpers/passiveOption.js":
+/*!**************************************!*\
+  !*** ./src/helpers/passiveOption.js ***!
+  \**************************************/
+/*! exports provided: passiveOption */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "passiveOption", function() { return passiveOption; });
+// Test via a getter in the options object to see if the passive property is accessed
+var supportsPassive = false;
+try {
+  var opts = Object.defineProperty({}, 'passive', {
+    get: function() {
+      supportsPassive = true;
+    }
+  });
+  window.addEventListener("test", null, opts);
+} catch (e) {}
+var passiveOption = supportsPassive ? { passive: true } : false;
+
+/***/ }),
+
+/***/ "./src/helpers/percentageLayout.js":
+/*!*****************************************!*\
+  !*** ./src/helpers/percentageLayout.js ***!
+  \*****************************************/
+/*! exports provided: percentageLayout */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "percentageLayout", function() { return percentageLayout; });
+/* harmony import */ var _getBody_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getBody.js */ "./src/helpers/getBody.js");
+/* harmony import */ var _setFakeBody_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./setFakeBody.js */ "./src/helpers/setFakeBody.js");
+/* harmony import */ var _resetFakeBody_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./resetFakeBody.js */ "./src/helpers/resetFakeBody.js");
+// get subpixel support value
+// @return - boolean
+
+
+
+
+function percentageLayout() {
+  // check subpixel layout supporting
+  var doc = document,
+      body = Object(_getBody_js__WEBPACK_IMPORTED_MODULE_0__["getBody"])(),
+      docOverflow = Object(_setFakeBody_js__WEBPACK_IMPORTED_MODULE_1__["setFakeBody"])(body),
+      wrapper = doc.createElement('div'),
+      outer = doc.createElement('div'),
+      str = '',
+      count = 70,
+      perPage = 3,
+      supported = false;
+
+  wrapper.className = "tns-t-subp2";
+  outer.className = "tns-t-ct";
+
+  for (var i = 0; i < count; i++) {
+    str += '<div></div>';
+  }
+
+  outer.innerHTML = str;
+  wrapper.appendChild(outer);
+  body.appendChild(wrapper);
+
+  supported = Math.abs(wrapper.getBoundingClientRect().left - outer.children[count - perPage].getBoundingClientRect().left) < 2;
+
+  body.fake ? Object(_resetFakeBody_js__WEBPACK_IMPORTED_MODULE_2__["resetFakeBody"])(body, docOverflow) : wrapper.remove();
+
+  return supported;
+}
+
+/***/ }),
+
+/***/ "./src/helpers/raf.js":
+/*!****************************!*\
+  !*** ./src/helpers/raf.js ***!
+  \****************************/
+/*! exports provided: raf */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "raf", function() { return raf; });
+var win = window;
+
+var raf = win.requestAnimationFrame
+  || win.webkitRequestAnimationFrame
+  || win.mozRequestAnimationFrame
+  || win.msRequestAnimationFrame
+  || function(cb) { return setTimeout(cb, 16); };
+
+
+/***/ }),
+
+/***/ "./src/helpers/removeAttrs.js":
+/*!************************************!*\
+  !*** ./src/helpers/removeAttrs.js ***!
+  \************************************/
+/*! exports provided: removeAttrs */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeAttrs", function() { return removeAttrs; });
+/* harmony import */ var _isNodeList_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isNodeList.js */ "./src/helpers/isNodeList.js");
+
+
+function removeAttrs(els, attrs) {
+  els = (Object(_isNodeList_js__WEBPACK_IMPORTED_MODULE_0__["isNodeList"])(els) || els instanceof Array) ? els : [els];
+  attrs = (attrs instanceof Array) ? attrs : [attrs];
+
+  var attrLength = attrs.length;
+  for (var i = els.length; i--;) {
+    for (var j = attrLength; j--;) {
+      els[i].removeAttribute(attrs[j]);
+    }
+  }
+}
+
+/***/ }),
+
+/***/ "./src/helpers/removeCSSRule.js":
+/*!**************************************!*\
+  !*** ./src/helpers/removeCSSRule.js ***!
+  \**************************************/
+/*! exports provided: removeCSSRule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeCSSRule", function() { return removeCSSRule; });
+/* harmony import */ var _raf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./raf.js */ "./src/helpers/raf.js");
+// cross browsers addRule method
+
+function removeCSSRule(sheet, index) {
+  // return raf(function() {
+    'deleteRule' in sheet ?
+      sheet.deleteRule(index) :
+      sheet.removeRule(index);
+  // });
+}
+
+/***/ }),
+
+/***/ "./src/helpers/removeClass.js":
+/*!************************************!*\
+  !*** ./src/helpers/removeClass.js ***!
+  \************************************/
+/*! exports provided: removeClass */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeClass", function() { return removeClass; });
+/* harmony import */ var _hasClass_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hasClass.js */ "./src/helpers/hasClass.js");
+
+var removeClass = _hasClass_js__WEBPACK_IMPORTED_MODULE_0__["classListSupport"] ?
+    function (el, str) {
+      if (Object(_hasClass_js__WEBPACK_IMPORTED_MODULE_0__["hasClass"])(el,  str)) { el.classList.remove(str); }
+    } :
+    function (el, str) {
+      if (Object(_hasClass_js__WEBPACK_IMPORTED_MODULE_0__["hasClass"])(el, str)) { el.className = el.className.replace(str, ''); }
+    };
+
+
+
+/***/ }),
+
+/***/ "./src/helpers/removeEvents.js":
+/*!*************************************!*\
+  !*** ./src/helpers/removeEvents.js ***!
+  \*************************************/
+/*! exports provided: removeEvents */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeEvents", function() { return removeEvents; });
+/* harmony import */ var _passiveOption_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./passiveOption.js */ "./src/helpers/passiveOption.js");
+
+
+function removeEvents(el, obj) {
+  for (var prop in obj) {
+    var option = ['touchstart', 'touchmove'].indexOf(prop) >= 0 ? _passiveOption_js__WEBPACK_IMPORTED_MODULE_0__["passiveOption"] : false;
+    el.removeEventListener(prop, obj[prop], option);
+  }
+}
+
+/***/ }),
+
+/***/ "./src/helpers/resetFakeBody.js":
+/*!**************************************!*\
+  !*** ./src/helpers/resetFakeBody.js ***!
+  \**************************************/
+/*! exports provided: resetFakeBody */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetFakeBody", function() { return resetFakeBody; });
+/* harmony import */ var _docElement_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./docElement.js */ "./src/helpers/docElement.js");
+
+
+function resetFakeBody (body, docOverflow) {
+  if (body.fake) {
+    body.remove();
+    _docElement_js__WEBPACK_IMPORTED_MODULE_0__["docElement"].style.overflow = docOverflow;
+    // Trigger layout so kinetic scrolling isn't disabled in iOS6+
+    // eslint-disable-next-line
+    _docElement_js__WEBPACK_IMPORTED_MODULE_0__["docElement"].offsetHeight;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/helpers/setAttrs.js":
+/*!*********************************!*\
+  !*** ./src/helpers/setAttrs.js ***!
+  \*********************************/
+/*! exports provided: setAttrs */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setAttrs", function() { return setAttrs; });
+/* harmony import */ var _isNodeList_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./isNodeList.js */ "./src/helpers/isNodeList.js");
+
+
+function setAttrs(els, attrs) {
+  els = (Object(_isNodeList_js__WEBPACK_IMPORTED_MODULE_0__["isNodeList"])(els) || els instanceof Array) ? els : [els];
+  if (Object.prototype.toString.call(attrs) !== '[object Object]') { return; }
+
+  for (var i = els.length; i--;) {
+    for(var key in attrs) {
+      els[i].setAttribute(key, attrs[key]);
+    }
+  }
+}
+
+/***/ }),
+
+/***/ "./src/helpers/setFakeBody.js":
+/*!************************************!*\
+  !*** ./src/helpers/setFakeBody.js ***!
+  \************************************/
+/*! exports provided: setFakeBody */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setFakeBody", function() { return setFakeBody; });
+/* harmony import */ var _docElement_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./docElement.js */ "./src/helpers/docElement.js");
+
+
+function setFakeBody (body) {
+  var docOverflow = '';
+  if (body.fake) {
+    docOverflow = _docElement_js__WEBPACK_IMPORTED_MODULE_0__["docElement"].style.overflow;
+    //avoid crashing IE8, if background image is used
+    body.style.background = '';
+    //Safari 5.13/5.1.4 OSX stops loading if ::-webkit-scrollbar is used and scrollbars are visible
+    body.style.overflow = _docElement_js__WEBPACK_IMPORTED_MODULE_0__["docElement"].style.overflow = 'hidden';
+    _docElement_js__WEBPACK_IMPORTED_MODULE_0__["docElement"].appendChild(body);
+  }
+
+  return docOverflow;
+}
+
+/***/ }),
+
+/***/ "./src/helpers/setLocalStorage.js":
+/*!****************************************!*\
+  !*** ./src/helpers/setLocalStorage.js ***!
+  \****************************************/
+/*! exports provided: setLocalStorage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setLocalStorage", function() { return setLocalStorage; });
+function setLocalStorage(storage, key, value, access) {
+  if (access) {
+    try { storage.setItem(key, value); } catch (e) {}
+  }
+  return value;
+}
+
+/***/ }),
+
+/***/ "./src/helpers/showElement.js":
+/*!************************************!*\
+  !*** ./src/helpers/showElement.js ***!
+  \************************************/
+/*! exports provided: showElement */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showElement", function() { return showElement; });
+function showElement(el, forceHide) {
+  if (el.style.display === 'none') { el.style.display = ''; }
+}
+
+/***/ }),
+
+/***/ "./src/helpers/toDegree.js":
+/*!*********************************!*\
+  !*** ./src/helpers/toDegree.js ***!
+  \*********************************/
+/*! exports provided: toDegree */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toDegree", function() { return toDegree; });
+function toDegree (y, x) {
+  return Math.atan2(y, x) * (180 / Math.PI);
+}
+
+/***/ }),
+
+/***/ "./src/helpers/whichProperty.js":
+/*!**************************************!*\
+  !*** ./src/helpers/whichProperty.js ***!
+  \**************************************/
+/*! exports provided: whichProperty */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "whichProperty", function() { return whichProperty; });
+function whichProperty(props){
+  if (typeof props === 'string') {
+    var arr = [props],
+        Props = props.charAt(0).toUpperCase() + props.substr(1),
+        prefixes = ['Webkit', 'Moz', 'ms', 'O'];
+        
+    prefixes.forEach(function(prefix) {
+      if (prefix !== 'ms' || props === 'transform') {
+        arr.push(prefix + Props);
+      }
+    });
+
+    props = arr;
+  }
+
+  var el = document.createElement('fakeelement'),
+      len = props.length;
+  for(var i = 0; i < props.length; i++){
+    var prop = props[i];
+    if( el.style[prop] !== undefined ){ return prop; }
+  }
+
+  return false; // explicit for ie9-
+}
+
+
+/***/ }),
+
+/***/ "./src/tiny-slider.js":
+/*!****************************!*\
+  !*** ./src/tiny-slider.js ***!
+  \****************************/
+/*! exports provided: tns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tns", function() { return tns; });
+/* harmony import */ var _helpers_raf_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers/raf.js */ "./src/helpers/raf.js");
+/* harmony import */ var _helpers_caf_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./helpers/caf.js */ "./src/helpers/caf.js");
+/* harmony import */ var _helpers_extend_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/extend.js */ "./src/helpers/extend.js");
+/* harmony import */ var _helpers_checkStorageValue_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers/checkStorageValue.js */ "./src/helpers/checkStorageValue.js");
+/* harmony import */ var _helpers_setLocalStorage_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers/setLocalStorage.js */ "./src/helpers/setLocalStorage.js");
+/* harmony import */ var _helpers_getSlideId_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helpers/getSlideId.js */ "./src/helpers/getSlideId.js");
+/* harmony import */ var _helpers_calc_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./helpers/calc.js */ "./src/helpers/calc.js");
+/* harmony import */ var _helpers_percentageLayout_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./helpers/percentageLayout.js */ "./src/helpers/percentageLayout.js");
+/* harmony import */ var _helpers_mediaquerySupport_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./helpers/mediaquerySupport.js */ "./src/helpers/mediaquerySupport.js");
+/* harmony import */ var _helpers_createStyleSheet_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./helpers/createStyleSheet.js */ "./src/helpers/createStyleSheet.js");
+/* harmony import */ var _helpers_addCSSRule_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./helpers/addCSSRule.js */ "./src/helpers/addCSSRule.js");
+/* harmony import */ var _helpers_removeCSSRule_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./helpers/removeCSSRule.js */ "./src/helpers/removeCSSRule.js");
+/* harmony import */ var _helpers_getCssRulesLength_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./helpers/getCssRulesLength.js */ "./src/helpers/getCssRulesLength.js");
+/* harmony import */ var _helpers_toDegree_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./helpers/toDegree.js */ "./src/helpers/toDegree.js");
+/* harmony import */ var _helpers_getTouchDirection_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./helpers/getTouchDirection.js */ "./src/helpers/getTouchDirection.js");
+/* harmony import */ var _helpers_forEachNodeList_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./helpers/forEachNodeList.js */ "./src/helpers/forEachNodeList.js");
+/* harmony import */ var _helpers_hasClass_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./helpers/hasClass.js */ "./src/helpers/hasClass.js");
+/* harmony import */ var _helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./helpers/addClass.js */ "./src/helpers/addClass.js");
+/* harmony import */ var _helpers_removeClass_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./helpers/removeClass.js */ "./src/helpers/removeClass.js");
+/* harmony import */ var _helpers_hasAttr_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./helpers/hasAttr.js */ "./src/helpers/hasAttr.js");
+/* harmony import */ var _helpers_getAttr_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./helpers/getAttr.js */ "./src/helpers/getAttr.js");
+/* harmony import */ var _helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./helpers/setAttrs.js */ "./src/helpers/setAttrs.js");
+/* harmony import */ var _helpers_removeAttrs_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./helpers/removeAttrs.js */ "./src/helpers/removeAttrs.js");
+/* harmony import */ var _helpers_arrayFromNodeList_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./helpers/arrayFromNodeList.js */ "./src/helpers/arrayFromNodeList.js");
+/* harmony import */ var _helpers_hideElement_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./helpers/hideElement.js */ "./src/helpers/hideElement.js");
+/* harmony import */ var _helpers_showElement_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./helpers/showElement.js */ "./src/helpers/showElement.js");
+/* harmony import */ var _helpers_isVisible_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./helpers/isVisible.js */ "./src/helpers/isVisible.js");
+/* harmony import */ var _helpers_whichProperty_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./helpers/whichProperty.js */ "./src/helpers/whichProperty.js");
+/* harmony import */ var _helpers_has3DTransforms_js__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./helpers/has3DTransforms.js */ "./src/helpers/has3DTransforms.js");
+/* harmony import */ var _helpers_getEndProperty_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./helpers/getEndProperty.js */ "./src/helpers/getEndProperty.js");
+/* harmony import */ var _helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./helpers/addEvents.js */ "./src/helpers/addEvents.js");
+/* harmony import */ var _helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./helpers/removeEvents.js */ "./src/helpers/removeEvents.js");
+/* harmony import */ var _helpers_events_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./helpers/events.js */ "./src/helpers/events.js");
+/* harmony import */ var _helpers_jsTransform_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./helpers/jsTransform.js */ "./src/helpers/jsTransform.js");
 // helper functions
 if (!Object.keys) {
     Object.keys = function (object) {
@@ -487,8 +1177,42 @@ if(!("remove" in Element.prototype)){
   };
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var tns = function(options) {
-  options = extend({
+  options = Object(_helpers_extend_js__WEBPACK_IMPORTED_MODULE_2__["extend"])({
     container: '.slider',
     mode: 'carousel',
     axis: 'horizontal',
@@ -587,17 +1311,17 @@ var tns = function(options) {
     }
   }
 
-  var CALC = tnsStorage['tC'] ? checkStorageValue(tnsStorage['tC']) : setLocalStorage(tnsStorage, 'tC', calc(), localStorageAccess),
-      PERCENTAGELAYOUT = tnsStorage['tPL'] ? checkStorageValue(tnsStorage['tPL']) : setLocalStorage(tnsStorage, 'tPL', percentageLayout(), localStorageAccess),
-      CSSMQ = tnsStorage['tMQ'] ? checkStorageValue(tnsStorage['tMQ']) : setLocalStorage(tnsStorage, 'tMQ', mediaquerySupport(), localStorageAccess),
-      TRANSFORM = tnsStorage['tTf'] ? checkStorageValue(tnsStorage['tTf']) : setLocalStorage(tnsStorage, 'tTf', whichProperty('transform'), localStorageAccess),
-      HAS3DTRANSFORMS = tnsStorage['t3D'] ? checkStorageValue(tnsStorage['t3D']) : setLocalStorage(tnsStorage, 't3D', has3DTransforms(TRANSFORM), localStorageAccess),
-      TRANSITIONDURATION = tnsStorage['tTDu'] ? checkStorageValue(tnsStorage['tTDu']) : setLocalStorage(tnsStorage, 'tTDu', whichProperty('transitionDuration'), localStorageAccess),
-      TRANSITIONDELAY = tnsStorage['tTDe'] ? checkStorageValue(tnsStorage['tTDe']) : setLocalStorage(tnsStorage, 'tTDe', whichProperty('transitionDelay'), localStorageAccess),
-      ANIMATIONDURATION = tnsStorage['tADu'] ? checkStorageValue(tnsStorage['tADu']) : setLocalStorage(tnsStorage, 'tADu', whichProperty('animationDuration'), localStorageAccess),
-      ANIMATIONDELAY = tnsStorage['tADe'] ? checkStorageValue(tnsStorage['tADe']) : setLocalStorage(tnsStorage, 'tADe', whichProperty('animationDelay'), localStorageAccess),
-      TRANSITIONEND = tnsStorage['tTE'] ? checkStorageValue(tnsStorage['tTE']) : setLocalStorage(tnsStorage, 'tTE', getEndProperty(TRANSITIONDURATION, 'Transition'), localStorageAccess),
-      ANIMATIONEND = tnsStorage['tAE'] ? checkStorageValue(tnsStorage['tAE']) : setLocalStorage(tnsStorage, 'tAE', getEndProperty(ANIMATIONDURATION, 'Animation'), localStorageAccess);
+  var CALC = tnsStorage['tC'] ? Object(_helpers_checkStorageValue_js__WEBPACK_IMPORTED_MODULE_3__["checkStorageValue"])(tnsStorage['tC']) : Object(_helpers_setLocalStorage_js__WEBPACK_IMPORTED_MODULE_4__["setLocalStorage"])(tnsStorage, 'tC', Object(_helpers_calc_js__WEBPACK_IMPORTED_MODULE_6__["calc"])(), localStorageAccess),
+      PERCENTAGELAYOUT = tnsStorage['tPL'] ? Object(_helpers_checkStorageValue_js__WEBPACK_IMPORTED_MODULE_3__["checkStorageValue"])(tnsStorage['tPL']) : Object(_helpers_setLocalStorage_js__WEBPACK_IMPORTED_MODULE_4__["setLocalStorage"])(tnsStorage, 'tPL', Object(_helpers_percentageLayout_js__WEBPACK_IMPORTED_MODULE_7__["percentageLayout"])(), localStorageAccess),
+      CSSMQ = tnsStorage['tMQ'] ? Object(_helpers_checkStorageValue_js__WEBPACK_IMPORTED_MODULE_3__["checkStorageValue"])(tnsStorage['tMQ']) : Object(_helpers_setLocalStorage_js__WEBPACK_IMPORTED_MODULE_4__["setLocalStorage"])(tnsStorage, 'tMQ', Object(_helpers_mediaquerySupport_js__WEBPACK_IMPORTED_MODULE_8__["mediaquerySupport"])(), localStorageAccess),
+      TRANSFORM = tnsStorage['tTf'] ? Object(_helpers_checkStorageValue_js__WEBPACK_IMPORTED_MODULE_3__["checkStorageValue"])(tnsStorage['tTf']) : Object(_helpers_setLocalStorage_js__WEBPACK_IMPORTED_MODULE_4__["setLocalStorage"])(tnsStorage, 'tTf', Object(_helpers_whichProperty_js__WEBPACK_IMPORTED_MODULE_27__["whichProperty"])('transform'), localStorageAccess),
+      HAS3DTRANSFORMS = tnsStorage['t3D'] ? Object(_helpers_checkStorageValue_js__WEBPACK_IMPORTED_MODULE_3__["checkStorageValue"])(tnsStorage['t3D']) : Object(_helpers_setLocalStorage_js__WEBPACK_IMPORTED_MODULE_4__["setLocalStorage"])(tnsStorage, 't3D', Object(_helpers_has3DTransforms_js__WEBPACK_IMPORTED_MODULE_28__["has3DTransforms"])(TRANSFORM), localStorageAccess),
+      TRANSITIONDURATION = tnsStorage['tTDu'] ? Object(_helpers_checkStorageValue_js__WEBPACK_IMPORTED_MODULE_3__["checkStorageValue"])(tnsStorage['tTDu']) : Object(_helpers_setLocalStorage_js__WEBPACK_IMPORTED_MODULE_4__["setLocalStorage"])(tnsStorage, 'tTDu', Object(_helpers_whichProperty_js__WEBPACK_IMPORTED_MODULE_27__["whichProperty"])('transitionDuration'), localStorageAccess),
+      TRANSITIONDELAY = tnsStorage['tTDe'] ? Object(_helpers_checkStorageValue_js__WEBPACK_IMPORTED_MODULE_3__["checkStorageValue"])(tnsStorage['tTDe']) : Object(_helpers_setLocalStorage_js__WEBPACK_IMPORTED_MODULE_4__["setLocalStorage"])(tnsStorage, 'tTDe', Object(_helpers_whichProperty_js__WEBPACK_IMPORTED_MODULE_27__["whichProperty"])('transitionDelay'), localStorageAccess),
+      ANIMATIONDURATION = tnsStorage['tADu'] ? Object(_helpers_checkStorageValue_js__WEBPACK_IMPORTED_MODULE_3__["checkStorageValue"])(tnsStorage['tADu']) : Object(_helpers_setLocalStorage_js__WEBPACK_IMPORTED_MODULE_4__["setLocalStorage"])(tnsStorage, 'tADu', Object(_helpers_whichProperty_js__WEBPACK_IMPORTED_MODULE_27__["whichProperty"])('animationDuration'), localStorageAccess),
+      ANIMATIONDELAY = tnsStorage['tADe'] ? Object(_helpers_checkStorageValue_js__WEBPACK_IMPORTED_MODULE_3__["checkStorageValue"])(tnsStorage['tADe']) : Object(_helpers_setLocalStorage_js__WEBPACK_IMPORTED_MODULE_4__["setLocalStorage"])(tnsStorage, 'tADe', Object(_helpers_whichProperty_js__WEBPACK_IMPORTED_MODULE_27__["whichProperty"])('animationDelay'), localStorageAccess),
+      TRANSITIONEND = tnsStorage['tTE'] ? Object(_helpers_checkStorageValue_js__WEBPACK_IMPORTED_MODULE_3__["checkStorageValue"])(tnsStorage['tTE']) : Object(_helpers_setLocalStorage_js__WEBPACK_IMPORTED_MODULE_4__["setLocalStorage"])(tnsStorage, 'tTE', Object(_helpers_getEndProperty_js__WEBPACK_IMPORTED_MODULE_29__["getEndProperty"])(TRANSITIONDURATION, 'Transition'), localStorageAccess),
+      ANIMATIONEND = tnsStorage['tAE'] ? Object(_helpers_checkStorageValue_js__WEBPACK_IMPORTED_MODULE_3__["checkStorageValue"])(tnsStorage['tAE']) : Object(_helpers_setLocalStorage_js__WEBPACK_IMPORTED_MODULE_4__["setLocalStorage"])(tnsStorage, 'tAE', Object(_helpers_getEndProperty_js__WEBPACK_IMPORTED_MODULE_29__["getEndProperty"])(ANIMATIONDURATION, 'Animation'), localStorageAccess);
 
   // get element nodes from selectors
   var supportConsoleWarn = win.console && typeof win.console.warn === "function",
@@ -633,7 +1357,7 @@ var tns = function(options) {
   if (responsive) {
     // apply responsive[0] to options and remove it
     if (0 in responsive) {
-      options = extend(options, responsive[0]);
+      options = Object(_helpers_extend_js__WEBPACK_IMPORTED_MODULE_2__["extend"])(options, responsive[0]);
       delete responsive[0];
     }
 
@@ -719,7 +1443,7 @@ var tns = function(options) {
       autoplayText = getOption('autoplayText'),
       autoplayHoverPause = getOption('autoplayHoverPause'),
       autoplayResetOnVisibility = getOption('autoplayResetOnVisibility'),
-      sheet = createStyleSheet(),
+      sheet = Object(_helpers_createStyleSheet_js__WEBPACK_IMPORTED_MODULE_9__["createStyleSheet"])(),
       lazyload = options.lazyload,
       lazyloadSelector = options.lazyloadSelector,
       slidePositions, // collection of slide positions
@@ -762,10 +1486,10 @@ var tns = function(options) {
       moveDirectionExpected = swipeAngle ? '?' : true,
       running = false,
       onInit = options.onInit,
-      events = new Events(),
+      events = new _helpers_events_js__WEBPACK_IMPORTED_MODULE_32__["Events"](),
       // id, class
       newContainerClasses = ' tns-slider tns-' + options.mode,
-      slideId = container.id || getSlideId(),
+      slideId = container.id || Object(_helpers_getSlideId_js__WEBPACK_IMPORTED_MODULE_5__["getSlideId"])(),
       disable = getOption('disable'),
       disabled = false,
       freezable = options.freezable,
@@ -1019,7 +1743,7 @@ var tns = function(options) {
     } else if (gutterTem && !fixedWidthTem) {
       var gutterTemUnit = '-' + gutterTem + 'px',
           dir = horizontal ? gutterTemUnit + ' 0 0' : '0 ' + gutterTemUnit + ' 0';
-      str = 'margin: 0 ' + dir + ';';
+      str = 'margin: 0 ' + dir + ';'
     }
 
     if (autoHeightBP && TRANSITIONDURATION && speedTem) { str += getTrsnsitionDurationStyle(speedTem); }
@@ -1093,9 +1817,9 @@ var tns = function(options) {
     for (var x = 0; x < slideCount; x++) {
       var item = slideItems[x];
       if (!item.id) { item.id = slideId + '-item' + x; }
-      addClass(item, 'tns-item');
-      if (!carousel && animateNormal) { addClass(item, animateNormal); }
-      setAttrs(item, {
+      Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(item, 'tns-item');
+      if (!carousel && animateNormal) { Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(item, animateNormal); }
+      Object(_helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__["setAttrs"])(item, {
         'aria-hidden': 'true',
         'tabindex': '-1'
       });
@@ -1111,12 +1835,12 @@ var tns = function(options) {
       for (var j = cloneCount; j--;) {
         var num = j%slideCount,
             cloneFirst = slideItems[num].cloneNode(true);
-        removeAttrs(cloneFirst, 'id');
+        Object(_helpers_removeAttrs_js__WEBPACK_IMPORTED_MODULE_22__["removeAttrs"])(cloneFirst, 'id');
         fragmentAfter.insertBefore(cloneFirst, fragmentAfter.firstChild);
 
         if (carousel) {
           var cloneLast = slideItems[slideCount - 1 - num].cloneNode(true);
-          removeAttrs(cloneLast, 'id');
+          Object(_helpers_removeAttrs_js__WEBPACK_IMPORTED_MODULE_22__["removeAttrs"])(cloneLast, 'id');
           fragmentBefore.appendChild(cloneLast);
         }
       }
@@ -1170,13 +1894,13 @@ var tns = function(options) {
       var imgs = container.querySelectorAll('img');
 
       // add complete class if all images are loaded/failed
-      forEachNodeList(imgs, function(img) {
+      Object(_helpers_forEachNodeList_js__WEBPACK_IMPORTED_MODULE_15__["forEachNodeList"])(imgs, function(img) {
         var src = img.src;
         if (src.indexOf('data:image') < 0) {
-          addEvents(img, imgEvents);
+          Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(img, imgEvents);
           img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
           img.src = src;
-          addClass(img, 'loading');
+          Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(img, 'loading');
           imgCachedCheck(img);
         } else if (!lazyload) {
           imgLoaded(img);
@@ -1184,12 +1908,12 @@ var tns = function(options) {
       });
 
       // All imgs are completed
-      raf(function(){ imgsLoadedCheck(arrayFromNodeList(imgs), function() { imgsComplete = true; }); });
+      Object(_helpers_raf_js__WEBPACK_IMPORTED_MODULE_0__["raf"])(function(){ imgsLoadedCheck(Object(_helpers_arrayFromNodeList_js__WEBPACK_IMPORTED_MODULE_23__["arrayFromNodeList"])(imgs), function() { imgsComplete = true; }); });
 
       // Check imgs in viewport only for auto height
       if (!autoWidth && horizontal) { imgs = getImageArray(index, items); }
 
-      lazyload ? initTM() : raf(function(){ imgsLoadedCheck(arrayFromNodeList(imgs), initTM); });
+      lazyload ? initTM() : Object(_helpers_raf_js__WEBPACK_IMPORTED_MODULE_0__["raf"])(function(){ imgsLoadedCheck(Object(_helpers_arrayFromNodeList_js__WEBPACK_IMPORTED_MODULE_23__["arrayFromNodeList"])(imgs), initTM); });
 
       function initTM () {
         if (autoWidth) {
@@ -1198,7 +1922,7 @@ var tns = function(options) {
           (function stylesApplicationCheck() {
             slideItems[num - 1].getBoundingClientRect().right.toFixed(2) === slideItems[num].getBoundingClientRect().left.toFixed(2) ?
             temp() :
-            setTimeout(function(){ stylesApplicationCheck(); }, 16);
+            setTimeout(function(){ stylesApplicationCheck() }, 16);
           })();
         } else {
           temp();
@@ -1246,14 +1970,14 @@ var tns = function(options) {
     // use slide count when slides are fewer than items
     for (var i = index, l = index + Math.min(slideCount, items); i < l; i++) {
       var item = slideItems[i];
-      setAttrs(item, {'aria-hidden': 'false'});
-      removeAttrs(item, ['tabindex']);
-      addClass(item, slideActiveClass);
+      Object(_helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__["setAttrs"])(item, {'aria-hidden': 'false'});
+      Object(_helpers_removeAttrs_js__WEBPACK_IMPORTED_MODULE_22__["removeAttrs"])(item, ['tabindex']);
+      Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(item, slideActiveClass);
 
       if (!carousel) { 
         item.style.left = (i - index) * 100 / items + '%';
-        addClass(item, animateIn);
-        removeClass(item, animateNormal);
+        Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(item, animateIn);
+        Object(_helpers_removeClass_js__WEBPACK_IMPORTED_MODULE_18__["removeClass"])(item, animateNormal);
       }
     }
 
@@ -1273,10 +1997,10 @@ var tns = function(options) {
     // Resource: https://docs.google.com/spreadsheets/d/147up245wwTXeQYve3BRSAD4oVcvQmuGsFteJOeA5xNQ/edit?usp=sharing
     if (horizontal) {
       if (PERCENTAGELAYOUT || autoWidth) {
-        addCSSRule(sheet, '#' + slideId + ' > .tns-item', 'font-size:' + win.getComputedStyle(slideItems[0]).fontSize + ';', getCssRulesLength(sheet));
-        addCSSRule(sheet, '#' + slideId, 'font-size:0;', getCssRulesLength(sheet));
+        Object(_helpers_addCSSRule_js__WEBPACK_IMPORTED_MODULE_10__["addCSSRule"])(sheet, '#' + slideId + ' > .tns-item', 'font-size:' + win.getComputedStyle(slideItems[0]).fontSize + ';', Object(_helpers_getCssRulesLength_js__WEBPACK_IMPORTED_MODULE_12__["getCssRulesLength"])(sheet));
+        Object(_helpers_addCSSRule_js__WEBPACK_IMPORTED_MODULE_10__["addCSSRule"])(sheet, '#' + slideId, 'font-size:0;', Object(_helpers_getCssRulesLength_js__WEBPACK_IMPORTED_MODULE_12__["getCssRulesLength"])(sheet));
       } else if (carousel) {
-        forEachNodeList(slideItems, function (slide, i) {
+        Object(_helpers_forEachNodeList_js__WEBPACK_IMPORTED_MODULE_15__["forEachNodeList"])(slideItems, function (slide, i) {
           slide.style.marginLeft = getSlideMarginLeft(i);
         });
       }
@@ -1287,13 +2011,13 @@ var tns = function(options) {
     if (CSSMQ) {
       // inner wrapper styles
       var str = getInnerWrapperStyles(options.edgePadding, options.gutter, options.fixedWidth, options.speed, options.autoHeight);
-      addCSSRule(sheet, '#' + slideId + '-iw', str, getCssRulesLength(sheet));
+      Object(_helpers_addCSSRule_js__WEBPACK_IMPORTED_MODULE_10__["addCSSRule"])(sheet, '#' + slideId + '-iw', str, Object(_helpers_getCssRulesLength_js__WEBPACK_IMPORTED_MODULE_12__["getCssRulesLength"])(sheet));
 
       // container styles
       if (carousel) {
         str = horizontal && !autoWidth ? 'width:' + getContainerWidth(options.fixedWidth, options.gutter, options.items) + ';' : '';
         if (TRANSITIONDURATION) { str += getTrsnsitionDurationStyle(speed); }
-        addCSSRule(sheet, '#' + slideId, str, getCssRulesLength(sheet));
+        Object(_helpers_addCSSRule_js__WEBPACK_IMPORTED_MODULE_10__["addCSSRule"])(sheet, '#' + slideId, str, Object(_helpers_getCssRulesLength_js__WEBPACK_IMPORTED_MODULE_12__["getCssRulesLength"])(sheet));
       }
 
       // slide styles
@@ -1304,7 +2028,7 @@ var tns = function(options) {
         if (TRANSITIONDURATION) { str += getTrsnsitionDurationStyle(speed); }
         if (ANIMATIONDURATION) { str += getAnimationDurationStyle(speed); }
       }
-      if (str) { addCSSRule(sheet, '#' + slideId + ' > .tns-item', str, getCssRulesLength(sheet)); }
+      if (str) { Object(_helpers_addCSSRule_js__WEBPACK_IMPORTED_MODULE_10__["addCSSRule"])(sheet, '#' + slideId + ' > .tns-item', str, Object(_helpers_getCssRulesLength_js__WEBPACK_IMPORTED_MODULE_12__["getCssRulesLength"])(sheet)); }
 
     // non CSS mediaqueries: IE8
     // ## update inner wrapper, container, slides if needed
@@ -1324,7 +2048,7 @@ var tns = function(options) {
       if (gutter) { str += getSlideGutterStyle(gutter); }
 
       // append to the last line
-      if (str) { addCSSRule(sheet, '#' + slideId + ' > .tns-item', str, getCssRulesLength(sheet)); }
+      if (str) { Object(_helpers_addCSSRule_js__WEBPACK_IMPORTED_MODULE_10__["addCSSRule"])(sheet, '#' + slideId + ' > .tns-item', str, Object(_helpers_getCssRulesLength_js__WEBPACK_IMPORTED_MODULE_12__["getCssRulesLength"])(sheet)); }
     }
 
     // ## MEDIAQUERIES
@@ -1390,7 +2114,7 @@ var tns = function(options) {
     if (hasAutoplay) {
       var txt = autoplay ? 'stop' : 'start';
       if (autoplayButton) {
-        setAttrs(autoplayButton, {'data-action': txt});
+        Object(_helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__["setAttrs"])(autoplayButton, {'data-action': txt});
       } else if (options.autoplayButtonOutput) {
         outerWrapper.insertAdjacentHTML(options.autoplayPosition !== 'top' ? 'beforeend' : 'afterbegin', '<button data-action="' + txt + '" type="button">' + autoplayHtmlStrings[0] + txt + autoplayHtmlStrings[1] + autoplayText[0] + '</button>');
         autoplayButton = outerWrapper.querySelector('[data-action]');
@@ -1398,13 +2122,13 @@ var tns = function(options) {
 
       // add event
       if (autoplayButton) {
-        addEvents(autoplayButton, {'click': toggleAutoplay});
+        Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(autoplayButton, {'click': toggleAutoplay});
       }
 
       if (autoplay) {
         startAutoplay();
-        if (autoplayHoverPause) { addEvents(container, hoverEvents); }
-        if (autoplayResetOnVisibility) { addEvents(container, visibilityEvent); }
+        if (autoplayHoverPause) { Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(container, hoverEvents); }
+        if (autoplayResetOnVisibility) { Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(container, visibilityEvent); }
       }
     }
  
@@ -1414,10 +2138,10 @@ var tns = function(options) {
       // customized nav
       // will not hide the navs in case they're thumbnails
       if (navContainer) {
-        setAttrs(navContainer, {'aria-label': 'Carousel Pagination'});
+        Object(_helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__["setAttrs"])(navContainer, {'aria-label': 'Carousel Pagination'});
         navItems = navContainer.children;
-        forEachNodeList(navItems, function(item, i) {
-          setAttrs(item, {
+        Object(_helpers_forEachNodeList_js__WEBPACK_IMPORTED_MODULE_15__["forEachNodeList"])(navItems, function(item, i) {
+          Object(_helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__["setAttrs"])(item, {
             'data-nav': i,
             'tabindex': '-1',
             'aria-controls': slideItems[initIndex + i].id,
@@ -1451,14 +2175,14 @@ var tns = function(options) {
           str = '-' + prefix + '-' + str;
         }
 
-        addCSSRule(sheet, '[aria-controls^=' + slideId + '-item]', str, getCssRulesLength(sheet));
+        Object(_helpers_addCSSRule_js__WEBPACK_IMPORTED_MODULE_10__["addCSSRule"])(sheet, '[aria-controls^=' + slideId + '-item]', str, Object(_helpers_getCssRulesLength_js__WEBPACK_IMPORTED_MODULE_12__["getCssRulesLength"])(sheet));
       }
 
-      setAttrs(navItems[navCurrentIndex], {'tabindex': '0', 'aria-label': navStr + (navCurrentIndex + 1) + navStrCurrent});
-      addClass(navItems[navCurrentIndex], navActiveClass);
+      Object(_helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__["setAttrs"])(navItems[navCurrentIndex], {'tabindex': '0', 'aria-label': navStr + (navCurrentIndex + 1) + navStrCurrent});
+      Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(navItems[navCurrentIndex], navActiveClass);
 
       // add events
-      addEvents(navContainer, navEvents);
+      Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(navContainer, navEvents);
     }
 
 
@@ -1477,22 +2201,22 @@ var tns = function(options) {
       }
 
       if (options.controlsContainer) {
-        setAttrs(controlsContainer, {
+        Object(_helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__["setAttrs"])(controlsContainer, {
           'aria-label': 'Carousel Navigation',
           'tabindex': '0'
         });
       }
 
       if (options.controlsContainer || (options.prevButton && options.nextButton)) {
-        setAttrs([prevButton, nextButton], {
+        Object(_helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__["setAttrs"])([prevButton, nextButton], {
           'aria-controls': slideId,
           'tabindex': '-1',
         });
       }
       
       if (options.controlsContainer || (options.prevButton && options.nextButton)) {
-        setAttrs(prevButton, {'data-controls' : 'prev'});
-        setAttrs(nextButton, {'data-controls' : 'next'});
+        Object(_helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__["setAttrs"])(prevButton, {'data-controls' : 'prev'});
+        Object(_helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__["setAttrs"])(nextButton, {'data-controls' : 'next'});
       }
 
       prevIsButton = isButton(prevButton);
@@ -1502,10 +2226,10 @@ var tns = function(options) {
 
       // add events
       if (controlsContainer) {
-        addEvents(controlsContainer, controlsEvents);
+        Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(controlsContainer, controlsEvents);
       } else {
-        addEvents(prevButton, controlsEvents);
-        addEvents(nextButton, controlsEvents);
+        Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(prevButton, controlsEvents);
+        Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(nextButton, controlsEvents);
       }
     }
 
@@ -1518,12 +2242,12 @@ var tns = function(options) {
     if (carousel && TRANSITIONEND) {
       var eve = {};
       eve[TRANSITIONEND] = onTransitionEnd;
-      addEvents(container, eve);
+      Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(container, eve);
     }
 
-    if (touch) { addEvents(container, touchEvents); }
-    if (mouseDrag) { addEvents(container, dragEvents); }
-    if (arrowKeys) { addEvents(doc, docmentKeydownEvent); }
+    if (touch) { Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(container, touchEvents); }
+    if (mouseDrag) { Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(container, dragEvents); }
+    if (arrowKeys) { Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(doc, docmentKeydownEvent); }
 
     if (nested === 'inner') {
       events.on('outerResized', function () {
@@ -1531,7 +2255,7 @@ var tns = function(options) {
         events.emit('innerLoaded', info());
       });
     } else if (responsive || fixedWidth || autoWidth || autoHeight || !horizontal) {
-      addEvents(win, {'resize': onResize});
+      Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(win, {'resize': onResize});
     }
 
     if (nested === 'outer') {
@@ -1555,27 +2279,27 @@ var tns = function(options) {
     if (sheet.ownerNode) { sheet.ownerNode.remove(); }
 
     // remove win event listeners
-    removeEvents(win, {'resize': onResize});
+    Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(win, {'resize': onResize});
 
     // arrowKeys, controls, nav
-    if (arrowKeys) { removeEvents(doc, docmentKeydownEvent); }
-    if (controlsContainer) { removeEvents(controlsContainer, controlsEvents); }
-    if (navContainer) { removeEvents(navContainer, navEvents); }
+    if (arrowKeys) { Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(doc, docmentKeydownEvent); }
+    if (controlsContainer) { Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(controlsContainer, controlsEvents); }
+    if (navContainer) { Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(navContainer, navEvents); }
 
     // autoplay
-    removeEvents(container, hoverEvents);
-    removeEvents(container, visibilityEvent);
-    if (autoplayButton) { removeEvents(autoplayButton, {'click': toggleAutoplay}); }
+    Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(container, hoverEvents);
+    Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(container, visibilityEvent);
+    if (autoplayButton) { Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(autoplayButton, {'click': toggleAutoplay}); }
     if (autoplay) { clearInterval(autoplayTimer); }
 
     // container
     if (carousel && TRANSITIONEND) {
       var eve = {};
       eve[TRANSITIONEND] = onTransitionEnd;
-      removeEvents(container, eve);
+      Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(container, eve);
     }
-    if (touch) { removeEvents(container, touchEvents); }
-    if (mouseDrag) { removeEvents(container, dragEvents); }
+    if (touch) { Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(container, touchEvents); }
+    if (mouseDrag) { Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(container, dragEvents); }
 
     // cache Object values in options && reset HTML
     var htmlList = [containerHTML, controlsContainerHTML, prevButtonHTML, nextButtonHTML, navContainerHTML, autoplayButtonHTML];
@@ -1606,7 +2330,7 @@ var tns = function(options) {
 // === ON RESIZE ===
   // responsive || fixedWidth || autoWidth || !horizontal
   function onResize (e) {
-    raf(function(){ resizeTasks(getEvent(e)); });
+    Object(_helpers_raf_js__WEBPACK_IMPORTED_MODULE_0__["raf"])(function(){ resizeTasks(getEvent(e)); });
   }
 
   function resizeTasks (e) {
@@ -1740,62 +2464,62 @@ var tns = function(options) {
 
     if (arrowKeys !== arrowKeysTem) {
       arrowKeys ?
-        addEvents(doc, docmentKeydownEvent) :
-        removeEvents(doc, docmentKeydownEvent);
+        Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(doc, docmentKeydownEvent) :
+        Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(doc, docmentKeydownEvent);
     }
     if (controls !== controlsTem) {
       if (controls) {
         if (controlsContainer) {
-          showElement(controlsContainer);
+          Object(_helpers_showElement_js__WEBPACK_IMPORTED_MODULE_25__["showElement"])(controlsContainer);
         } else {
-          if (prevButton) { showElement(prevButton); }
-          if (nextButton) { showElement(nextButton); }
+          if (prevButton) { Object(_helpers_showElement_js__WEBPACK_IMPORTED_MODULE_25__["showElement"])(prevButton); }
+          if (nextButton) { Object(_helpers_showElement_js__WEBPACK_IMPORTED_MODULE_25__["showElement"])(nextButton); }
         }
       } else {
         if (controlsContainer) {
-          hideElement(controlsContainer);
+          Object(_helpers_hideElement_js__WEBPACK_IMPORTED_MODULE_24__["hideElement"])(controlsContainer);
         } else {
-          if (prevButton) { hideElement(prevButton); }
-          if (nextButton) { hideElement(nextButton); }
+          if (prevButton) { Object(_helpers_hideElement_js__WEBPACK_IMPORTED_MODULE_24__["hideElement"])(prevButton); }
+          if (nextButton) { Object(_helpers_hideElement_js__WEBPACK_IMPORTED_MODULE_24__["hideElement"])(nextButton); }
         }
       }
     }
     if (nav !== navTem) {
       if (nav) {
-        showElement(navContainer);
+        Object(_helpers_showElement_js__WEBPACK_IMPORTED_MODULE_25__["showElement"])(navContainer);
         updateNavVisibility();
       } else {
-        hideElement(navContainer);
+        Object(_helpers_hideElement_js__WEBPACK_IMPORTED_MODULE_24__["hideElement"])(navContainer);
       }
     }
     if (touch !== touchTem) {
       touch ?
-        addEvents(container, touchEvents) :
-        removeEvents(container, touchEvents);
+        Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(container, touchEvents) :
+        Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(container, touchEvents);
     }
     if (mouseDrag !== mouseDragTem) {
       mouseDrag ?
-        addEvents(container, dragEvents) :
-        removeEvents(container, dragEvents);
+        Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(container, dragEvents) :
+        Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(container, dragEvents);
     }
     if (autoplay !== autoplayTem) {
       if (autoplay) {
-        if (autoplayButton) { showElement(autoplayButton); }
+        if (autoplayButton) { Object(_helpers_showElement_js__WEBPACK_IMPORTED_MODULE_25__["showElement"])(autoplayButton); }
         if (!animating && !autoplayUserPaused) { startAutoplay(); }
       } else {
-        if (autoplayButton) { hideElement(autoplayButton); }
+        if (autoplayButton) { Object(_helpers_hideElement_js__WEBPACK_IMPORTED_MODULE_24__["hideElement"])(autoplayButton); }
         if (animating) { stopAutoplay(); }
       }
     }
     if (autoplayHoverPause !== autoplayHoverPauseTem) {
       autoplayHoverPause ?
-        addEvents(container, hoverEvents) :
-        removeEvents(container, hoverEvents);
+        Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(container, hoverEvents) :
+        Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(container, hoverEvents);
     }
     if (autoplayResetOnVisibility !== autoplayResetOnVisibilityTem) {
       autoplayResetOnVisibility ?
-        addEvents(doc, visibilityEvent) :
-        removeEvents(doc, visibilityEvent);
+        Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(doc, visibilityEvent) :
+        Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(doc, visibilityEvent);
     }
 
     if (bpChanged) {
@@ -1851,8 +2575,8 @@ var tns = function(options) {
 
           // remove the last line and
           // add new styles
-          removeCSSRule(sheet, getCssRulesLength(sheet) - 1);
-          addCSSRule(sheet, '#' + slideId + ' > .tns-item', str, getCssRulesLength(sheet));
+          Object(_helpers_removeCSSRule_js__WEBPACK_IMPORTED_MODULE_11__["removeCSSRule"])(sheet, Object(_helpers_getCssRulesLength_js__WEBPACK_IMPORTED_MODULE_12__["getCssRulesLength"])(sheet) - 1);
+          Object(_helpers_addCSSRule_js__WEBPACK_IMPORTED_MODULE_10__["addCSSRule"])(sheet, '#' + slideId + ' > .tns-item', str, Object(_helpers_getCssRulesLength_js__WEBPACK_IMPORTED_MODULE_12__["getCssRulesLength"])(sheet));
         }
       }
 
@@ -1936,27 +2660,27 @@ var tns = function(options) {
   })();
 
   function disableUI () {
-    if (!autoplay && autoplayButton) { hideElement(autoplayButton); }
-    if (!nav && navContainer) { hideElement(navContainer); }
+    if (!autoplay && autoplayButton) { Object(_helpers_hideElement_js__WEBPACK_IMPORTED_MODULE_24__["hideElement"])(autoplayButton); }
+    if (!nav && navContainer) { Object(_helpers_hideElement_js__WEBPACK_IMPORTED_MODULE_24__["hideElement"])(navContainer); }
     if (!controls) {
       if (controlsContainer) {
-        hideElement(controlsContainer);
+        Object(_helpers_hideElement_js__WEBPACK_IMPORTED_MODULE_24__["hideElement"])(controlsContainer);
       } else {
-        if (prevButton) { hideElement(prevButton); }
-        if (nextButton) { hideElement(nextButton); }
+        if (prevButton) { Object(_helpers_hideElement_js__WEBPACK_IMPORTED_MODULE_24__["hideElement"])(prevButton); }
+        if (nextButton) { Object(_helpers_hideElement_js__WEBPACK_IMPORTED_MODULE_24__["hideElement"])(nextButton); }
       }
     }
   }
 
   function enableUI () {
-    if (autoplay && autoplayButton) { showElement(autoplayButton); }
-    if (nav && navContainer) { showElement(navContainer); }
+    if (autoplay && autoplayButton) { Object(_helpers_showElement_js__WEBPACK_IMPORTED_MODULE_25__["showElement"])(autoplayButton); }
+    if (nav && navContainer) { Object(_helpers_showElement_js__WEBPACK_IMPORTED_MODULE_25__["showElement"])(navContainer); }
     if (controls) {
       if (controlsContainer) {
-        showElement(controlsContainer);
+        Object(_helpers_showElement_js__WEBPACK_IMPORTED_MODULE_25__["showElement"])(controlsContainer);
       } else {
-        if (prevButton) { showElement(prevButton); }
-        if (nextButton) { showElement(nextButton); }
+        if (prevButton) { Object(_helpers_showElement_js__WEBPACK_IMPORTED_MODULE_25__["showElement"])(prevButton); }
+        if (nextButton) { Object(_helpers_showElement_js__WEBPACK_IMPORTED_MODULE_25__["showElement"])(nextButton); }
       }
     }
   }
@@ -1971,8 +2695,8 @@ var tns = function(options) {
     if (cloneCount) {
       var str = 'tns-transparent';
       for (var i = cloneCount; i--;) {
-        if (carousel) { addClass(slideItems[i], str); }
-        addClass(slideItems[slideCountNew - i - 1], str);
+        if (carousel) { Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(slideItems[i], str); }
+        Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(slideItems[slideCountNew - i - 1], str);
       }
     }
 
@@ -1993,8 +2717,8 @@ var tns = function(options) {
     if (cloneCount) {
       var str = 'tns-transparent';
       for (var i = cloneCount; i--;) {
-        if (carousel) { removeClass(slideItems[i], str); }
-        removeClass(slideItems[slideCountNew - i - 1], str);
+        if (carousel) { Object(_helpers_removeClass_js__WEBPACK_IMPORTED_MODULE_18__["removeClass"])(slideItems[i], str); }
+        Object(_helpers_removeClass_js__WEBPACK_IMPORTED_MODULE_18__["removeClass"])(slideItems[slideCountNew - i - 1], str);
       }
     }
 
@@ -2009,24 +2733,24 @@ var tns = function(options) {
 
     sheet.disabled = true;
     container.className = container.className.replace(newContainerClasses.substring(1), '');
-    removeAttrs(container, ['style']);
+    Object(_helpers_removeAttrs_js__WEBPACK_IMPORTED_MODULE_22__["removeAttrs"])(container, ['style']);
     if (loop) {
       for (var j = cloneCount; j--;) {
-        if (carousel) { hideElement(slideItems[j]); }
-        hideElement(slideItems[slideCountNew - j - 1]);
+        if (carousel) { Object(_helpers_hideElement_js__WEBPACK_IMPORTED_MODULE_24__["hideElement"])(slideItems[j]); }
+        Object(_helpers_hideElement_js__WEBPACK_IMPORTED_MODULE_24__["hideElement"])(slideItems[slideCountNew - j - 1]);
       }
     }
 
     // vertical slider
-    if (!horizontal || !carousel) { removeAttrs(innerWrapper, ['style']); }
+    if (!horizontal || !carousel) { Object(_helpers_removeAttrs_js__WEBPACK_IMPORTED_MODULE_22__["removeAttrs"])(innerWrapper, ['style']); }
 
     // gallery
     if (!carousel) { 
       for (var i = index, l = index + slideCount; i < l; i++) {
         var item = slideItems[i];
-        removeAttrs(item, ['style']);
-        removeClass(item, animateIn);
-        removeClass(item, animateNormal);
+        Object(_helpers_removeAttrs_js__WEBPACK_IMPORTED_MODULE_22__["removeAttrs"])(item, ['style']);
+        Object(_helpers_removeClass_js__WEBPACK_IMPORTED_MODULE_18__["removeClass"])(item, animateIn);
+        Object(_helpers_removeClass_js__WEBPACK_IMPORTED_MODULE_18__["removeClass"])(item, animateNormal);
       }
     }
 
@@ -2045,8 +2769,8 @@ var tns = function(options) {
 
     if (loop) {
       for (var j = cloneCount; j--;) {
-        if (carousel) { showElement(slideItems[j]); }
-        showElement(slideItems[slideCountNew - j - 1]);
+        if (carousel) { Object(_helpers_showElement_js__WEBPACK_IMPORTED_MODULE_25__["showElement"])(slideItems[j]); }
+        Object(_helpers_showElement_js__WEBPACK_IMPORTED_MODULE_25__["showElement"])(slideItems[slideCountNew - j - 1]);
       }
     }
 
@@ -2056,7 +2780,7 @@ var tns = function(options) {
         var item = slideItems[i],
             classN = i < index + items ? animateIn : animateNormal;
         item.style.left = (i - index) * 100 / items + '%';
-        addClass(item, classN);
+        Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(item, classN);
       }
     }
 
@@ -2091,23 +2815,23 @@ var tns = function(options) {
       len = Math.ceil(Math.min(len, slideCountNew));
 
       for(; i < len; i++) {
-        forEachNodeList(slideItems[i].querySelectorAll(lazyloadSelector), function (img) {
-          if (!hasClass(img, imgCompleteClass)) {
+        Object(_helpers_forEachNodeList_js__WEBPACK_IMPORTED_MODULE_15__["forEachNodeList"])(slideItems[i].querySelectorAll(lazyloadSelector), function (img) {
+          if (!Object(_helpers_hasClass_js__WEBPACK_IMPORTED_MODULE_16__["hasClass"])(img, imgCompleteClass)) {
             // stop propagation transitionend event to container
             var eve = {};
             eve[TRANSITIONEND] = function (e) { e.stopPropagation(); };
-            addEvents(img, eve);
+            Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(img, eve);
 
-            addEvents(img, imgEvents);
+            Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(img, imgEvents);
 
             // update srcset
-            var srcset = getAttr(img, 'data-srcset');
+            var srcset = Object(_helpers_getAttr_js__WEBPACK_IMPORTED_MODULE_20__["getAttr"])(img, 'data-srcset');
             if (srcset) { img.srcset = srcset; }
 
             // update src
-            img.src = getAttr(img, 'data-src');
+            img.src = Object(_helpers_getAttr_js__WEBPACK_IMPORTED_MODULE_20__["getAttr"])(img, 'data-src');
 
-            addClass(img, 'loading');
+            Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(img, 'loading');
             imgCachedCheck(img);
           }
         });
@@ -2126,19 +2850,19 @@ var tns = function(options) {
   }
 
   function imgLoaded (img) {
-    addClass(img, 'loaded');
+    Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(img, 'loaded');
     imgCompleted(img);
   }
 
   function imgFailed (img) {
-    addClass(img, 'failed');
+    Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(img, 'failed');
     imgCompleted(img);
   }
 
   function imgCompleted (img) {
-    addClass(img, 'tns-complete');
-    removeClass(img, 'loading');
-    removeEvents(img, imgEvents);
+    Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(img, 'tns-complete');
+    Object(_helpers_removeClass_js__WEBPACK_IMPORTED_MODULE_18__["removeClass"])(img, 'loading');
+    Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(img, imgEvents);
   }
 
   function imgCachedCheck (img) {
@@ -2150,7 +2874,7 @@ var tns = function(options) {
   function getImageArray (slideStart, slideRange) {
     var imgs = [];
     for (var i = slideStart, l = Math.min(slideStart + slideRange, slideCountNew); i < l; i++) {
-      forEachNodeList(slideItems[i].querySelectorAll('img'), function (img) {
+      Object(_helpers_forEachNodeList_js__WEBPACK_IMPORTED_MODULE_15__["forEachNodeList"])(slideItems[i].querySelectorAll('img'), function (img) {
         imgs.push(img);
       });
     }
@@ -2165,7 +2889,7 @@ var tns = function(options) {
         getImageArray(index, items) :
         getImageArray(cloneCount, slideCount);
 
-    raf(function(){ imgsLoadedCheck(imgs, updateInnerWrapperHeight); });
+    Object(_helpers_raf_js__WEBPACK_IMPORTED_MODULE_0__["raf"])(function(){ imgsLoadedCheck(imgs, updateInnerWrapperHeight); });
   }
 
   function imgsLoadedCheck (imgs, cb) {
@@ -2174,14 +2898,14 @@ var tns = function(options) {
 
     // check selected image classes otherwise
     imgs.forEach(function (img, index) {
-      if (hasClass(img, imgCompleteClass)) { imgs.splice(index, 1); }
+      if (Object(_helpers_hasClass_js__WEBPACK_IMPORTED_MODULE_16__["hasClass"])(img, imgCompleteClass)) { imgs.splice(index, 1); }
     });
 
     // execute callback function if selected images are all complete
     if (!imgs.length) { return cb(); }
 
     // otherwise execute this functiona again
-    raf(function(){ imgsLoadedCheck(imgs, cb); });
+    Object(_helpers_raf_js__WEBPACK_IMPORTED_MODULE_0__["raf"])(function(){ imgsLoadedCheck(imgs, cb); });
   } 
 
   function additionalUpdates () {
@@ -2236,21 +2960,21 @@ var tns = function(options) {
       
       // visible slides
       if (i >= index && i < l) {
-        if (hasAttr(item, 'tabindex')) {
-          setAttrs(item, {'aria-hidden': 'false'});
-          removeAttrs(item, ['tabindex']);
-          addClass(item, slideActiveClass);
+        if (Object(_helpers_hasAttr_js__WEBPACK_IMPORTED_MODULE_19__["hasAttr"])(item, 'tabindex')) {
+          Object(_helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__["setAttrs"])(item, {'aria-hidden': 'false'});
+          Object(_helpers_removeAttrs_js__WEBPACK_IMPORTED_MODULE_22__["removeAttrs"])(item, ['tabindex']);
+          Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(item, slideActiveClass);
         }
       // hidden slides
       } else {
-        if (!hasAttr(item, 'tabindex')) {
-          setAttrs(item, {
+        if (!Object(_helpers_hasAttr_js__WEBPACK_IMPORTED_MODULE_19__["hasAttr"])(item, 'tabindex')) {
+          Object(_helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__["setAttrs"])(item, {
             'aria-hidden': 'true',
             'tabindex': '-1'
           });
         }
-        if (hasClass(item, slideActiveClass)) {
-          removeClass(item, slideActiveClass);
+        if (Object(_helpers_hasClass_js__WEBPACK_IMPORTED_MODULE_16__["hasClass"])(item, slideActiveClass)) {
+          Object(_helpers_removeClass_js__WEBPACK_IMPORTED_MODULE_18__["removeClass"])(item, slideActiveClass);
         }
       }
     }
@@ -2264,25 +2988,25 @@ var tns = function(options) {
 
       if (i >= index && i < l) {
         // add transitions to visible slides when adjusting their positions
-        addClass(item, 'tns-moving');
+        Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(item, 'tns-moving');
 
         item.style.left = (i - index) * 100 / items + '%';
-        addClass(item, animateIn);
-        removeClass(item, animateNormal);
+        Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(item, animateIn);
+        Object(_helpers_removeClass_js__WEBPACK_IMPORTED_MODULE_18__["removeClass"])(item, animateNormal);
       } else if (item.style.left) {
         item.style.left = '';
-        addClass(item, animateNormal);
-        removeClass(item, animateIn);
+        Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(item, animateNormal);
+        Object(_helpers_removeClass_js__WEBPACK_IMPORTED_MODULE_18__["removeClass"])(item, animateIn);
       }
 
       // remove outlet animation
-      removeClass(item, animateOut);
+      Object(_helpers_removeClass_js__WEBPACK_IMPORTED_MODULE_18__["removeClass"])(item, animateOut);
     }
 
     // removing '.tns-moving'
     setTimeout(function() {
-      forEachNodeList(slideItems, function(el) {
-        removeClass(el, 'tns-moving');
+      Object(_helpers_forEachNodeList_js__WEBPACK_IMPORTED_MODULE_15__["forEachNodeList"])(slideItems, function(el) {
+        Object(_helpers_removeClass_js__WEBPACK_IMPORTED_MODULE_18__["removeClass"])(el, 'tns-moving');
       });
     }, 300);
   }
@@ -2298,16 +3022,16 @@ var tns = function(options) {
         var navPrev = navItems[navCurrentIndexCached],
             navCurrent = navItems[navCurrentIndex];
 
-        setAttrs(navPrev, {
+        Object(_helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__["setAttrs"])(navPrev, {
           'tabindex': '-1',
           'aria-label': navStr + (navCurrentIndexCached + 1)
         });
-        setAttrs(navCurrent, {
+        Object(_helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__["setAttrs"])(navCurrent, {
           'tabindex': '0',
           'aria-label': navStr + (navCurrentIndex + 1) + navStrCurrent
         });
-        removeClass(navPrev, navActiveClass);
-        addClass(navCurrent, navActiveClass);
+        Object(_helpers_removeClass_js__WEBPACK_IMPORTED_MODULE_18__["removeClass"])(navPrev, navActiveClass);
+        Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(navCurrent, navActiveClass);
 
         navCurrentIndexCached = navCurrentIndex;
       }
@@ -2433,8 +3157,8 @@ var tns = function(options) {
       if (animateDelay && TRANSITIONDELAY) {
         item.style[TRANSITIONDELAY] = item.style[ANIMATIONDELAY] = animateDelay * (i - number) / 1000 + 's';
       }
-      removeClass(item, classOut);
-      addClass(item, classIn);
+      Object(_helpers_removeClass_js__WEBPACK_IMPORTED_MODULE_18__["removeClass"])(item, classOut);
+      Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(item, classIn);
       
       if (isOut) { slideItemsOut.push(item); }
     }
@@ -2453,11 +3177,11 @@ var tns = function(options) {
           doContainerTransform();
           // run fallback function manually 
           // when duration is 0 / container is hidden
-          if (!speed || !isVisible(container)) { onTransitionEnd(); }
+          if (!speed || !Object(_helpers_isVisible_js__WEBPACK_IMPORTED_MODULE_26__["isVisible"])(container)) { onTransitionEnd(); }
 
         } else {
           // for old browser with non-zero duration
-          jsTransform(container, transformAttr, transformPrefix, transformPostfix, getContainerTransformValue(), speed, onTransitionEnd);
+          Object(_helpers_jsTransform_js__WEBPACK_IMPORTED_MODULE_33__["jsTransform"])(container, transformAttr, transformPrefix, transformPostfix, getContainerTransformValue(), speed, onTransitionEnd);
         }
 
         if (!horizontal) { updateContentWrapperHeight(); }
@@ -2467,15 +3191,15 @@ var tns = function(options) {
 
         var eve = {};
         eve[TRANSITIONEND] = eve[ANIMATIONEND] = onTransitionEnd;
-        removeEvents(slideItems[indexCached], eve);
-        addEvents(slideItems[index], eve);
+        Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(slideItems[indexCached], eve);
+        Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(slideItems[index], eve);
 
         animateSlide(indexCached, animateIn, animateOut, true);
         animateSlide(index, animateNormal, animateIn);
 
         // run fallback function manually 
         // when transition or animation not supported / duration is 0
-        if (!TRANSITIONEND || !ANIMATIONEND || !speed || !isVisible(container)) { onTransitionEnd(); }
+        if (!TRANSITIONEND || !ANIMATIONEND || !speed || !Object(_helpers_isVisible_js__WEBPACK_IMPORTED_MODULE_26__["isVisible"])(container)) { onTransitionEnd(); }
       };
   })();
 
@@ -2532,8 +3256,8 @@ var tns = function(options) {
             item.style[ANIMATIONDELAY] = '';
             item.style[TRANSITIONDELAY] = '';
           }
-          removeClass(item, animateOut);
-          addClass(item, animateNormal);
+          Object(_helpers_removeClass_js__WEBPACK_IMPORTED_MODULE_18__["removeClass"])(item, animateOut);
+          Object(_helpers_addClass_js__WEBPACK_IMPORTED_MODULE_17__["addClass"])(item, animateNormal);
         }
       }
 
@@ -2675,8 +3399,8 @@ var tns = function(options) {
         navIndex;
 
     // find the clicked nav item
-    while (target !== navContainer && !hasAttr(target, 'data-nav')) { target = target.parentNode; }
-    if (hasAttr(target, 'data-nav')) {
+    while (target !== navContainer && !Object(_helpers_hasAttr_js__WEBPACK_IMPORTED_MODULE_19__["hasAttr"])(target, 'data-nav')) { target = target.parentNode; }
+    if (Object(_helpers_hasAttr_js__WEBPACK_IMPORTED_MODULE_19__["hasAttr"])(target, 'data-nav')) {
       navIndex = navClicked = [].indexOf.call(navItems, target);
       goTo(navIndex, e);
 
@@ -2702,7 +3426,7 @@ var tns = function(options) {
   }
 
   function updateAutoplayButton (action, txt) {
-    setAttrs(autoplayButton, {'data-action': action});
+    Object(_helpers_setAttrs_js__WEBPACK_IMPORTED_MODULE_21__["setAttrs"])(autoplayButton, {'data-action': action});
     autoplayButton.innerHTML = autoplayHtmlStrings[0] + action + autoplayHtmlStrings[1] + txt;
   }
 
@@ -2815,7 +3539,7 @@ var tns = function(options) {
   // on key nav
   function onNavKeydown (e) {
     var curElement = doc.activeElement;
-    if (!hasAttr(curElement, 'data-nav')) { return; }
+    if (!Object(_helpers_hasAttr_js__WEBPACK_IMPORTED_MODULE_19__["hasAttr"])(curElement, 'data-nav')) { return; }
 
     e = getEvent(e);
     var code = e.keyCode,
@@ -2880,7 +3604,7 @@ var tns = function(options) {
   }
 
   function getMoveDirectionExpected () {
-    return getTouchDirection(toDegree(lastPosition.y - initPosition.y, lastPosition.x - initPosition.x), swipeAngle) === options.axis;
+    return Object(_helpers_getTouchDirection_js__WEBPACK_IMPORTED_MODULE_14__["getTouchDirection"])(Object(_helpers_toDegree_js__WEBPACK_IMPORTED_MODULE_13__["toDegree"])(lastPosition.y - initPosition.y, lastPosition.x - initPosition.x), swipeAngle) === options.axis;
   }
 
   function onPanStart (e) {
@@ -2892,7 +3616,7 @@ var tns = function(options) {
     
     panStart = true;
     if (rafIndex) {
-      caf(rafIndex);
+      Object(_helpers_caf_js__WEBPACK_IMPORTED_MODULE_1__["caf"])(rafIndex);
       rafIndex = null;
     }
 
@@ -2918,7 +3642,7 @@ var tns = function(options) {
       lastPosition.y = parseInt($.clientY);
 
       if (carousel) {
-        if (!rafIndex) { rafIndex = raf(function(){ panUpdate(e); }); }
+        if (!rafIndex) { rafIndex = Object(_helpers_raf_js__WEBPACK_IMPORTED_MODULE_0__["raf"])(function(){ panUpdate(e); }); }
       } else {
         if (moveDirectionExpected === '?') { moveDirectionExpected = getMoveDirectionExpected(); }
         if (moveDirectionExpected) { preventScroll = true; }
@@ -2933,8 +3657,8 @@ var tns = function(options) {
       panStart = false;
       return;
     }
-    caf(rafIndex);
-    if (panStart) { rafIndex = raf(function(){ panUpdate(e); }); }
+    Object(_helpers_caf_js__WEBPACK_IMPORTED_MODULE_1__["caf"])(rafIndex);
+    if (panStart) { rafIndex = Object(_helpers_raf_js__WEBPACK_IMPORTED_MODULE_0__["raf"])(function(){ panUpdate(e); }); }
 
     if (moveDirectionExpected === '?') { moveDirectionExpected = getMoveDirectionExpected(); }
     if (moveDirectionExpected) {
@@ -2962,7 +3686,7 @@ var tns = function(options) {
   function onPanEnd (e) {
     if (panStart) {
       if (rafIndex) {
-        caf(rafIndex);
+        Object(_helpers_caf_js__WEBPACK_IMPORTED_MODULE_1__["caf"])(rafIndex);
         rafIndex = null;
       }
       if (carousel) { resetDuration(container, ''); }
@@ -2978,14 +3702,14 @@ var tns = function(options) {
         if (!isTouchEvent(e)) {
           // prevent "click"
           var target = getTarget(e);
-          addEvents(target, {'click': function preventClick (e) {
+          Object(_helpers_addEvents_js__WEBPACK_IMPORTED_MODULE_30__["addEvents"])(target, {'click': function preventClick (e) {
             preventDefaultBehavior(e);
-            removeEvents(target, {'click': preventClick});
+            Object(_helpers_removeEvents_js__WEBPACK_IMPORTED_MODULE_31__["removeEvents"])(target, {'click': preventClick});
           }}); 
         }
 
         if (carousel) {
-          rafIndex = raf(function() {
+          rafIndex = Object(_helpers_raf_js__WEBPACK_IMPORTED_MODULE_0__["raf"])(function() {
             if (horizontal && !autoWidth) {
               var indexMoved = - dist * items / viewport;
               indexMoved = dist > 0 ? Math.floor(indexMoved) : Math.ceil(indexMoved);
@@ -3063,8 +3787,8 @@ var tns = function(options) {
     getVisibleNavIndex();
 
     if (visibleNavIndexes !== visibleNavIndexesCached) {
-      forEachNodeList(navItems, function(el, i) {
-        visibleNavIndexes.indexOf(i) < 0 ? hideElement(el) : showElement(el);
+      Object(_helpers_forEachNodeList_js__WEBPACK_IMPORTED_MODULE_15__["forEachNodeList"])(navItems, function(el, i) {
+        visibleNavIndexes.indexOf(i) < 0 ? Object(_helpers_hideElement_js__WEBPACK_IMPORTED_MODULE_24__["hideElement"])(el) : Object(_helpers_showElement_js__WEBPACK_IMPORTED_MODULE_25__["showElement"])(el);
       });
 
       // cache visible nav indexes
@@ -3112,10 +3836,30 @@ var tns = function(options) {
     refresh: initSliderTransform,
     destroy: destroy,
     rebuild: function() {
-      return tns(extend(options, optionsElements));
+      return tns(Object(_helpers_extend_js__WEBPACK_IMPORTED_MODULE_2__["extend"])(options, optionsElements));
     }
   };
 };
 
-return tns;
-})();
+
+/***/ }),
+
+/***/ "./webpack-entry.js":
+/*!**************************!*\
+  !*** ./webpack-entry.js ***!
+  \**************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _src_tiny_slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/tiny-slider */ "./src/tiny-slider.js");
+
+
+// Expose
+window.tns = _src_tiny_slider__WEBPACK_IMPORTED_MODULE_0__["tns"];
+
+
+/***/ })
+
+/******/ });
